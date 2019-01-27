@@ -1,0 +1,32 @@
+
+public class HeapUtils 
+{
+	public static void heapify(Comparable [] heap, int index, int heapSize)
+	{
+		Comparable value = heap[index];
+		int left = index * 2;
+		int right = index * 2 + 1;
+		if (left >= heap.length)
+			return;
+		Comparable l = heap[left];
+		Comparable max = l;
+		int loc = left;
+		if (right < heapSize)
+		{
+			Comparable r = heap[right];
+			if (r.compareTo(l) > 0)
+			{
+				max = r;
+				loc = right;
+			}
+		}
+		if (max.compareTo(value) > 0)
+		{
+			Comparable temp = heap[loc];
+			heap[loc] = heap[index];
+			heap[index] = temp;
+			heapify(heap, loc, heapSize);
+		}
+	}
+	
+}
